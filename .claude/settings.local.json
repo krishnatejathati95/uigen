@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(export:*)",
+      "Bash(start:*)",
+      "mcp__playwright",
+      "Bash(curl:*)"
+    ]
+  }
+}
