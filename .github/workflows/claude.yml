@@ -31,9 +31,9 @@ jobs:
           fetch-depth: 1
 
       - name: Project Setup
-        run: 
+        run: |
           npm run setup
-	  npm run dev:daemon
+          npm run dev:daemon
 
       - name: Run Claude Code
         id: claude
@@ -41,16 +41,16 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
-          custom_instructions: 
-	    The project is already set up with all dependencies installed. 
-	    The server is already running at localhost:3000. Logs from it
-	    are being written to logs.txt. If needed, you can query the 
-	    db with the sqlite3' cli. If needed, use the mcp__playwright 
-	    set of tools to launc a browser and interact with the app.
+          custom_instructions: |
+            The project is already set up with all dependencies installed.
+            The server is already running at localhost:3000. Logs from it
+            are being written to logs.txt. If needed, you can query the
+            db with the sqlite3 cli. If needed, use the mcp__playwright
+            set of tools to launch a browser and interact with the app.
 
-	  mcp_config: 
-	    {
-    	      "mcpServers": {
+          mcp_config: |
+            {
+              "mcpServers": {
                 "playwright": {
                   "command": "npx",
                   "args": [
@@ -58,10 +58,8 @@ jobs:
                     "--allowed-origins",
                     "localhost:3000;cdn.tailwindcss.com;esm.sh"
                   ]
-      		}
-    	      }
-  	    }
+                }
+              }
+            }
 
-	  allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,mcp__playwright__browser_type,mcp__playwright__browser_navigate,mcp__playwright__browser_scroll,mcp__playwright__browser_wait,mcp__playwright__browser_screenshot"
-
-
+          allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,mcp__playwright__browser_type,mcp__playwright__browser_navigate,mcp__playwright__browser_scroll,mcp__playwright__browser_wait,mcp__playwright__browser_screenshot"
